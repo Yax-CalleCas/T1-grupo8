@@ -59,8 +59,3 @@ spring:
 ## Postman
 
 Colección en `Postman/`, importar con **File → Import**.
-
-
-```
-Aporte [Nombre Apellido] - Grupo 8
-```
