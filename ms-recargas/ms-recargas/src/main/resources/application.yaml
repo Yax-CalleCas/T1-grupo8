@@ -5,7 +5,7 @@ spring:
   application:
     name: ms-recargas
   datasource:
-    url: jdbc:mysql://localhost:5510/appdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Lima
+    url: jdbc:mysql://localhost:3307/appdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Lima
     username: app
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,11 +13,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-#conexion a Rabb
-    spring:
-      rabbitmq:
-        host: localhost
-        port: 5672
-        username: guest
-        password: guest
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
