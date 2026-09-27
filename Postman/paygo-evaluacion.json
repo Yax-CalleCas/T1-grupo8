@@ -1,0 +1,116 @@
+{
+  "info": {
+    "name": "PAYGO PERU - T1 Pregunta 1 y 2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Ms-Tarjetas (Listar todas)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/tarjetas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "tarjetas"]
+        },
+        "description": "Consulta el listado general de tarjetas precargadas en el microservicio proveedor."
+      }
+    },
+    {
+      "name": "2. Ms-Tarjetas (Consultar por ID)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/tarjetas/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "tarjetas", "1"]
+        },
+        "description": "Consulta una tarjeta específica por su ID (utilizado internamente por OpenFeign)."
+      }
+    },
+    {
+      "name": "3. Ms-Recargas (Registrar Recarga - Éxito)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idTarjeta\": 1,\n  \"montoRecarga\": 100.00\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/recargas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["api", "recargas"]
+        },
+        "description": "Valida la existencia de la tarjeta vía OpenFeign, obtiene el saldo disponible y registra la recarga con fecha automática. Además, publica el mensaje de forma asíncrona en calle_queue para su evaluación de riesgo."
+      }
+    },
+    {
+      "name": "4. Ms-Recargas (Registrar Recarga - Error 404)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idTarjeta\": 9999,\n  \"montoRecarga\": 50.00\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/recargas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["api", "recargas"]
+        },
+        "description": "Prueba el manejo de excepciones cuando la tarjeta no existe, devolviendo un mensaje limpio interceptado por el ControllerAdvice."
+      }
+    },
+    {
+      "name": "5. Ms-Riesgo (Listar Análisis)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/analisis",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8083",
+          "path": ["api", "analisis"]
+        },
+        "description": "Lista el contenido de la tabla análisis, resultado del procesamiento asíncrono de las solicitudes de recarga consumidas desde calle_queue, incluyendo la situación (Aprobada/Observada) calculada según el 70% del saldo disponible."
+      }
+    },
+    {
+      "name": "6. Ms-Riesgo (Consultar Análisis por ID)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/analisis/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8083",
+          "path": ["api", "analisis", "1"]
+        },
+        "description": "Consulta un registro específico de análisis de riesgo por su ID."
+      }
+    }
+  ]
+}
