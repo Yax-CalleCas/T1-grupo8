@@ -10,7 +10,6 @@
 - Nicole Eimi Nolasco Zaan
 - Cesar Roman Quispe
 
-## Proyecto
 
 PAYGO PERÚ - 3 microservicios: `ms-tarjetas` (8081), `ms-recargas` (8082, valida tarjeta vía Feign y publica a RabbitMQ) y `ms-riesgo` (8083, consume de la cola y calcula situación de riesgo).
 
