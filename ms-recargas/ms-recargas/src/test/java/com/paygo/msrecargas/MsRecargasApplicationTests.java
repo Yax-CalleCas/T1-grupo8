@@ -1,4 +1,4 @@
-package com.paygo.ms_recargas;
+package com.paygo.msrecargas;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
