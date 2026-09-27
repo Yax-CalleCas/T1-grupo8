@@ -1,4 +1,4 @@
-package com.paygo.ms_recargas;
+package com.paygo.msrecargas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
